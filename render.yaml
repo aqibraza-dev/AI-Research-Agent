@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: research-agent-v2-api
+    runtime: docker
+    plan: free
+    rootDir: research-agent-v2/backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_SSL
+        value: "true"
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_PUBLISHABLE_KEY
+        sync: false
+      - key: OPEN_ROUTER_FREE_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: CREDENTIAL_ENCRYPTION_KEY
+        sync: false
+      - key: SCHEDULER_SECRET
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: WORKER_ENABLED
+        value: "true"

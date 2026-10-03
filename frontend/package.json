@@ -1,0 +1,33 @@
+{
+  "name": "research-agent-v2",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "lint": "eslint .",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.0",
+    "lucide-react": "^0.468.0",
+    "luxon": "^3.5.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^9.0.0",
+    "react-router-dom": "^7.1.0",
+    "remark-gfm": "^4.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@playwright/test": "^1.50.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.14.0",
+    "prettier": "3.8.1",
+    "vite": "^6.1.0"
+  }
+}
