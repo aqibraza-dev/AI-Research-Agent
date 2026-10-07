@@ -9,7 +9,9 @@ __pycache__/
 .coverage
 *.pdf
 *.png
+!images/*.png
 playwright-report/
 test-results/
+docs/*
 
 .ruff_cache/

@@ -1,76 +1,124 @@
-# AI Research Agent v2
+# AI Research Agent
 
-A standalone research workspace: React/Vite frontend, FastAPI backend, Supabase PostgreSQL + Auth, and optional Upstash Redis acceleration. The original project is unchanged.
+A web workspace for researching a topic with live sources, refining a cited report, and continuing the work through chat. It also keeps private report history, runs research on a schedule, and shows how model tokens are used.
 
-**Start here:** [Detailed online hosting tutorial](docs/HOSTING-TUTORIAL.md), or the shorter [Setup and deployment reference](docs/DEPLOYMENT.md). See [Architecture and API](docs/ARCHITECTURE.md), [Testing](docs/TESTING.md), and [Operations](docs/OPERATIONS.md).
+![AI Research Agent public home page](images/Homepage.png)
 
-## Included
+## System Architecture
 
-- Public home page at `/` with a feature overview and signup/sign-in links. Research starts at `/research`; all workspace services require authentication.
+```mermaid
+flowchart TB
 
-- Live Tavily research, draft/review stages, citations and saved source provenance; optional deeper research.
-- Private searchable research history, report comparison, rename, delete, rerun, PDF/Markdown export.
-- Persistent chat with report context, cancellation/retry, conversation and individual response export.
-- Once/daily/weekly/monthly schedules with timezone-aware previews, pause/resume, edit, duplicate, delete, run-now, history, and notifications.
-- Real token/cost ledger, conservative reservations, atomic daily allowances, and platform/external usage separation.
-- Read-only free model catalog: `openrouter/free`, `qwen/qwen3.8-27b:free`, `nvidia/nemotron-3.5-lightning:free`.
-- Administrator dashboard for usage, limits, access, feature permissions, jobs, service health, and audit logs.
-- Built-in adversarial screening and custom OpenAI-compatible targets with encrypted temporary credentials and private-network protections.
+    FE["React 19 Frontend<br/>Vite + React Router + Supabase Auth SDK"]
 
-## Local startup
+    subgraph BACKEND["FastAPI Backend"]
+        AUTH["Auth and Security<br/>Supabase Auth Check<br/>Anti-SSRF Guard<br/>Fernet Encryption"]
 
-Requires Python 3.12+, Node 22+, a configured Supabase project, OpenRouter key, and Tavily key. Redis is recommended but optional; the database throttle remains active without it.
+        API["API Router<br/>Research, Chat<br/>Schedules, Analytics<br/>Admin and Redteam"]
 
-From this directory:
+        EXPORT["PDF and Markdown Export Engine<br/>ReportLab<br/>markdown-it-py"]
+    end
 
-```bash
-python3 -m venv backend/.venv
-backend/.venv/bin/pip install -r backend/requirements.lock
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
+    WORKER["Async Background Worker<br/>FOR UPDATE SKIP LOCKED<br/>JSONB Stage Checkpoints<br/>2-Min Heartbeat Lease<br/>Citation and URL Validator"]
+
+    REDIS["Upstash Redis<br/>Caching and Rate Limiting<br/>Search Cache<br/>Atomic Lua Rate Limiter"]
+
+    DB["Supabase PostgreSQL<br/>Row-Level Security<br/>Token Accounting<br/>PL/pgSQL Scheduler<br/>Immutable Ledger<br/>Transaction Pooler"]
+
+    TAVILY["Tavily Search API<br/>Live Web Content"]
+
+    OPENROUTER["OpenRouter Free API<br/>Zero-Price Models"]
+
+    FE -->|"Bearer JWT Auth Header"| AUTH
+
+    AUTH --> API
+
+    API --> EXPORT
+
+    API -->|"Async Event Wake Hint"| WORKER
+
+    API -->|"Connection Pool AsyncPG"| DB
+
+    WORKER <-->|"Caching and Rate Limiting"| REDIS
+
+    WORKER <-->|"Job State and Checkpoints"| DB
+
+    API <-->|"Caching and Rate Limiting"| REDIS
+
+    WORKER --> TAVILY
+
+    WORKER --> OPENROUTER
 ```
 
-Fill in the configuration following the deployment guide. The existing parent `.env` is not copied or exposed. Transfer only its `OPEN_ROUTER_FREE_API_KEY` value into the backend environment yourself, or inject it using your secret manager.
+## How it works
 
-```bash
-backend/.venv/bin/python scripts/manage.py migrate
-cd backend
-.venv/bin/uvicorn app.main:app --reload --port 8000
-```
+1. **Start a report** by entering a topic and choosing a model. Tavily finds live source material. The backend drafts a report, reviews it, and checks that numbered citations refer to retrieved sources. Deep research adds another search and revision pass.
+2. **Follow up or export.** Reports and their sources are saved to PostgreSQL. You can revisit, compare, rename, rerun, or export them as Markdown or PDF. Chat can use a saved report as context.
+3. **Automate and monitor.** The scheduler stores recurring jobs, while analytics records token reservations and confirmed model usage. An administrator can manage access, limits, jobs, and service health.
 
-In a second terminal:
+The database holds the durable state. A background worker claims jobs, records progress, and resumes completed stages after a restart. Redis is optional for short-lived caching and throttling.
 
-```bash
-cd frontend
-npm ci
-npm run dev
-```
+## Features
 
-Open `http://localhost:5173`, create an account, confirm your email, and sign in. Promote your account separately:
+| Area | What you can do |
+| --- | --- |
+| Research | Run standard or deep research; view source excerpts and citations; search history; compare, rerun, rename, delete, and export reports. |
+| Chat | Keep conversations, ask follow-up questions about a report, retry or cancel a response, and export a conversation or message. |
+| Models | Choose from the built-in free OpenRouter model catalog. |
+| Scheduling | Create once, daily, weekly, or monthly research runs in an IANA time zone; preview, pause, resume, duplicate, run now, and inspect run history. |
+| Analytics | Review daily token usage, model and feature breakdowns, and the request ledger. |
+| Red teaming | Run built-in adversarial prompt suites or test an authorized public OpenAI-compatible endpoint with temporary encrypted credentials. |
+| Administration | Review users, allowances, feature access, job activity, service health, and audit records. |
 
-```bash
-backend/.venv/bin/python scripts/manage.py promote-admin your-email@example.com
-```
+### Screenshots
 
-The frontend never receives OpenRouter, Tavily, Redis, database, or encryption secrets. The Supabase publishable/anon key is intentionally public; the database uses RLS and backend authorization.
+**Chat:** continue from a saved report and keep the conversation in your workspace.
 
-## Directory layout
+![Report-aware chat workspace](images/Chats.png)
+
+**Models:** browse the available free model choices.
+
+![Free model catalog](images/Models.png)
+
+**Scheduler:** set up repeat research with a chosen time zone and recurrence.
+
+![Research schedule creation screen](images/Scheduler.png)
+
+**Analytics:** inspect usage totals, trends, and individual requests.
+
+![Token usage analytics](images/Analytics.png)
+
+**Red teaming:** configure a test run and review the results.
+
+![Red-team test configuration and results](images/Red_teaming.png)
+
+**Admin panel:** see platform activity and manage administrative settings.
+
+![Administrator dashboard](images/Admin_panel.png)
+
+## Stack
+
+- **Frontend:** React 19, Vite, React Router, and Supabase Auth.
+- **Backend:** Python 3.12, FastAPI, Uvicorn, and a database-backed worker.
+- **Data:** Supabase PostgreSQL with row-level security; optional Upstash Redis.
+- **Research and models:** Tavily search and free OpenRouter routes.
+- **Hosting:** Docker backend on Render and frontend on Vercel; other hosts are possible.
+
+The browser receives only the Supabase publishable key. Database credentials, provider keys, and encryption secrets stay on the backend. Reports, chats, and schedules are scoped to their owners; administrator actions are audited.
+
+
+
+
+## Repository layout
 
 ```text
-backend/app/             API, workers, providers, quotas, exports, security
-backend/tests/           Unit/integration tests and isolated browser harness
-frontend/src/            Responsive application and all feature pages
-frontend/tests/          Browser acceptance tests
-supabase/migrations/     Schema, RLS, quota and scheduling functions
-supabase/scheduler.sql   Optional hosted Cron + Vault setup
-scripts/                 Migrations, admin bootstrap, smoke checks
-render.yaml              Render free web-service blueprint
+backend/app/             FastAPI routes, worker, provider calls, security, exports
+backend/tests/           Backend tests
+frontend/src/            Pages, authentication, and API client
+frontend/tests/          Browser tests
+images/                  Screenshots used in this README
+supabase/migrations/     Database schema and access policies
+supabase/scheduler.sql   Optional hosted scheduling setup
+scripts/                 Migration, admin, and smoke-test tools
+render.yaml              Render service blueprint
 ```
-
-## Expectations
-
-The default application allowance is 50,000 input+output tokens per user per UTC day. This is a cap, not a promise of provider capacity. OpenRouter and Tavily quotas are shared across the deployment. Only free inference routes are permitted; there is no automatic paid fallback.
-
-Scheduling is best effort. Free services can sleep, restart, pause, or exhaust their allowances. The database stores work durably; an interrupted in-flight provider call may need an explicit retry, with conservative usage retained until reconciled. Built-in red-team scoring is heuristic, not a security certification.
-
-No hosted services were provisioned or deployed by this implementation. Configure your accounts and secrets, then follow the supplied deployment and verification steps.

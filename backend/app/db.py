@@ -1,4 +1,6 @@
+import errno
 import json
+from urllib.parse import urlsplit
 import asyncpg
 from .config import settings
 
@@ -12,15 +14,29 @@ async def connect():
         for name in ("json", "jsonb"):
             await conn.set_type_codec(name, encoder=json.dumps, decoder=json.loads, schema="pg_catalog")
 
-    pool = await asyncpg.create_pool(
-        settings().database_url,
-        min_size=1,
-        max_size=4,
-        statement_cache_size=0,
-        command_timeout=30,
-        ssl="require" if settings().database_ssl else False,
-        init=init,
-    )
+    config = settings()
+    try:
+        pool = await asyncpg.create_pool(
+            config.database_url,
+            min_size=1,
+            max_size=4,
+            statement_cache_size=0,
+            command_timeout=30,
+            ssl="require" if config.database_ssl else False,
+            init=init,
+        )
+    except OSError as exc:
+        host = urlsplit(config.database_url).hostname or ""
+        if exc.errno == errno.ENETUNREACH and host.startswith("db.") and host.endswith(".supabase.co"):
+            raise RuntimeError(
+                "Cannot reach the Supabase direct database endpoint. It normally requires IPv6. "
+                "For Render, copy the Transaction pooler URI from Supabase > Connect into DATABASE_URL "
+                "(shared pooler host, project-qualified username, port 6543). "
+                "Keep DATABASE_SSL=true, URL-encode the database password, and redeploy. "
+                "Changing only the port on the direct endpoint will not fix this."
+            ) from None
+        raise
+
 
 
 async def close():

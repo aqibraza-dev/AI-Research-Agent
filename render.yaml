@@ -3,10 +3,13 @@ services:
     name: research-agent-v2-api
     runtime: docker
     plan: free
-    rootDir: research-agent-v2/backend
+    rootDir: backend
     dockerfilePath: ./Dockerfile
+    dockerContext: .
     healthCheckPath: /health
     envVars:
+      # Supabase Connect > Transaction pooler URI (IPv4-compatible, port 6543).
+      # Copy its exact host and username; the direct db.* endpoint normally requires IPv6.
       - key: DATABASE_URL
         sync: false
       - key: DATABASE_SSL
