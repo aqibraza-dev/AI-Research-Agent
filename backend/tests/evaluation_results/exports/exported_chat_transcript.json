@@ -1,0 +1,28 @@
+{
+  "conversation_id": "ec7886e6-1afa-4a0c-bcd0-7259b2e6bc76",
+  "title": "Interactive Research Chat on Hydride Superconductors",
+  "total_messages": 4,
+  "messages": [
+    {
+      "id": "cd37d6ae-60b1-4d0a-b3c7-e8bdac42f249",
+      "role": "user",
+      "content": "Can you summarize experimental evidence for high-pressure hydride superconductors?"
+    },
+    {
+      "id": "5ceb4782-7309-4213-8ade-a9f7d07e61f1",
+      "role": "assistant",
+      "content": "Diamond anvil cell experiments on LaH10 confirm zero electrical resistance at 250K under 170 GPa pressure [1]. Subsequent magnetic susceptibility measurements confirm the Meissner effect [2]."
+    },
+    {
+      "id": "77c2e0ed-81bf-43c7-93b1-cc2a60a8e67a",
+      "role": "user",
+      "content": "What are the remaining theoretical hurdles for room-temperature ambient pressure operation?"
+    },
+    {
+      "id": "9d0f3b81-4215-4353-a0ff-a5995d0616d1",
+      "role": "assistant",
+      "content": "Stabilizing high electron-phonon coupling without megabar pressures requires ternary or quaternary hydride frameworks with high electronic density of states at the Fermi energy."
+    }
+  ],
+  "exported_at": "2026-11-18T10:25:39Z"
+}

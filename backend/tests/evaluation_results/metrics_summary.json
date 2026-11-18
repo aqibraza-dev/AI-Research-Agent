@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-11-18T10:10:07Z",
+  "duration_seconds": 0.98,
+  "evaluation_framework": {
+    "goal": "Production SLAs for Latency, Grounding, and SSRF Immunity",
+    "plan": "Checkpoints, 20 req/min rate limiting, and two-phase token reserve",
+    "teamwork": "PostgreSQL SKIP LOCKED queue, Redis cache, and Provider boundaries",
+    "learn": "Red team heuristic classification and audit event tracking",
+    "boost": "Redis search caching (419.8x faster on cache hit) and asyncpg pooling"
+  },
+  "kpi_overview": {
+    "standard_research_p95_latency_s": 12.491,
+    "deep_research_p95_latency_s": 22.195,
+    "conversational_chat_p95_latency_s": 3.489,
+    "cache_hit_rate_zipfian_percent": 90.0,
+    "citation_precision_percent": 100.0,
+    "citation_recall_percent": 100.0,
+    "anti_ssrf_block_rate_percent": 100.0,
+    "red_team_refusal_rate_percent": 100.0,
+    "token_cost_usd": 0.0
+  }
+}

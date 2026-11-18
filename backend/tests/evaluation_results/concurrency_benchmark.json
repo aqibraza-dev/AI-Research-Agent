@@ -1,0 +1,635 @@
+{
+  "throughput": {
+    "concurrency_tiers": [
+      1,
+      5,
+      10,
+      20,
+      35,
+      50,
+      75,
+      100
+    ],
+    "health_rps": [
+      392.5,
+      1450.8,
+      1221.6,
+      1436.0,
+      1009.8,
+      1083.0,
+      902.4,
+      972.9
+    ],
+    "research_rps": [
+      161.8,
+      735.5,
+      615.4,
+      685.6,
+      585.3,
+      547.5,
+      476.5,
+      461.3
+    ],
+    "chat_rps": [
+      155.3,
+      445.4,
+      470.8,
+      477.0,
+      338.8,
+      216.7,
+      382.8,
+      289.5
+    ],
+    "export_markdown_rps": [
+      279.4,
+      709.5,
+      721.5,
+      662.0,
+      410.5,
+      488.9,
+      450.3,
+      365.7
+    ],
+    "latencies": {
+      "1": {
+        "p50": 4.32,
+        "p90": 5.5,
+        "p95": 13.49,
+        "p99": 27.82,
+        "min": 3.69,
+        "max": 31.4,
+        "mean": 6.17,
+        "std": 7.0
+      },
+      "5": {
+        "p50": 5.75,
+        "p90": 7.89,
+        "p95": 8.3,
+        "p99": 9.06,
+        "min": 3.92,
+        "max": 9.25,
+        "mean": 6.0,
+        "std": 1.55
+      },
+      "10": {
+        "p50": 10.4,
+        "p90": 12.4,
+        "p95": 12.51,
+        "p99": 12.6,
+        "min": 7.77,
+        "max": 12.62,
+        "mean": 10.13,
+        "std": 1.78
+      },
+      "20": {
+        "p50": 17.07,
+        "p90": 22.8,
+        "p95": 22.84,
+        "p99": 22.84,
+        "min": 11.24,
+        "max": 22.84,
+        "mean": 17.48,
+        "std": 3.94
+      },
+      "35": {
+        "p50": 37.37,
+        "p90": 41.82,
+        "p95": 44.13,
+        "p99": 44.24,
+        "min": 22.99,
+        "max": 44.24,
+        "mean": 34.37,
+        "std": 6.94
+      },
+      "50": {
+        "p50": 56.87,
+        "p90": 65.67,
+        "p95": 68.38,
+        "p99": 70.58,
+        "min": 38.35,
+        "max": 71.06,
+        "mean": 53.91,
+        "std": 9.87
+      },
+      "75": {
+        "p50": 84.44,
+        "p90": 111.54,
+        "p95": 114.59,
+        "p99": 124.15,
+        "min": 65.02,
+        "max": 131.03,
+        "mean": 86.31,
+        "std": 16.78
+      },
+      "100": {
+        "p50": 113.72,
+        "p90": 150.27,
+        "p95": 160.62,
+        "p99": 170.95,
+        "min": 71.37,
+        "max": 195.37,
+        "mean": 119.49,
+        "std": 20.52
+      }
+    }
+  },
+  "pool": {
+    "concurrency_levels": [
+      1,
+      4,
+      8,
+      16,
+      32,
+      64,
+      100
+    ],
+    "pool_max_size": 4,
+    "max_active_observed": [
+      1,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+    ],
+    "avg_queue_wait_ms": [
+      0.01,
+      0.0,
+      1.12,
+      3.42,
+      7.19,
+      17.07,
+      27.11
+    ],
+    "p95_queue_wait_ms": [
+      0.01,
+      0.0,
+      2.24,
+      6.81,
+      14.49,
+      33.21,
+      51.84
+    ],
+    "max_queue_wait_ms": [
+      0.01,
+      0.0,
+      2.25,
+      6.81,
+      14.49,
+      33.54,
+      54.12
+    ],
+    "throughput_ops_per_sec": [
+      374.8,
+      1569.4,
+      1691.6,
+      1704.5,
+      1653.9,
+      1722.7,
+      1702.1
+    ]
+  },
+  "rate_limiter": {
+    "burst_size": 35,
+    "rate_limit_ceiling": 20,
+    "redis_allowed": 20,
+    "redis_throttled": 15,
+    "redis_avg_latency_ms": 0.053,
+    "db_fallback_avg_latency_ms": 1.411,
+    "redis_responses": [
+      {
+        "seq": 1,
+        "status": 200,
+        "latency_ms": 0.3002800003741868
+      },
+      {
+        "seq": 2,
+        "status": 200,
+        "latency_ms": 0.03928700061806012
+      },
+      {
+        "seq": 3,
+        "status": 200,
+        "latency_ms": 0.033496000469313
+      },
+      {
+        "seq": 4,
+        "status": 200,
+        "latency_ms": 0.08534800053894287
+      },
+      {
+        "seq": 5,
+        "status": 200,
+        "latency_ms": 0.04415700004756218
+      },
+      {
+        "seq": 6,
+        "status": 200,
+        "latency_ms": 0.04003899994131643
+      },
+      {
+        "seq": 7,
+        "status": 200,
+        "latency_ms": 0.038686000152665656
+      },
+      {
+        "seq": 8,
+        "status": 200,
+        "latency_ms": 0.03733299945452018
+      },
+      {
+        "seq": 9,
+        "status": 200,
+        "latency_ms": 0.0376839998352807
+      },
+      {
+        "seq": 10,
+        "status": 200,
+        "latency_ms": 0.03430700053286273
+      },
+      {
+        "seq": 11,
+        "status": 200,
+        "latency_ms": 0.03672200000437442
+      },
+      {
+        "seq": 12,
+        "status": 200,
+        "latency_ms": 0.03199300044798292
+      },
+      {
+        "seq": 13,
+        "status": 200,
+        "latency_ms": 0.2091309997922508
+      },
+      {
+        "seq": 14,
+        "status": 200,
+        "latency_ms": 0.035569999454310164
+      },
+      {
+        "seq": 15,
+        "status": 200,
+        "latency_ms": 0.034468000194465276
+      },
+      {
+        "seq": 16,
+        "status": 200,
+        "latency_ms": 0.03464800010988256
+      },
+      {
+        "seq": 17,
+        "status": 200,
+        "latency_ms": 0.037664000046788715
+      },
+      {
+        "seq": 18,
+        "status": 200,
+        "latency_ms": 0.03867599934892496
+      },
+      {
+        "seq": 19,
+        "status": 200,
+        "latency_ms": 0.03963800008932594
+      },
+      {
+        "seq": 20,
+        "status": 200,
+        "latency_ms": 0.038745999518141616
+      },
+      {
+        "seq": 21,
+        "status": 429,
+        "latency_ms": 0.06695100000797538
+      },
+      {
+        "seq": 22,
+        "status": 429,
+        "latency_ms": 0.04671199985750718
+      },
+      {
+        "seq": 23,
+        "status": 429,
+        "latency_ms": 0.04103099945496069
+      },
+      {
+        "seq": 24,
+        "status": 429,
+        "latency_ms": 0.06450700038840296
+      },
+      {
+        "seq": 25,
+        "status": 429,
+        "latency_ms": 0.0481550005133613
+      },
+      {
+        "seq": 26,
+        "status": 429,
+        "latency_ms": 0.037011999665992334
+      },
+      {
+        "seq": 27,
+        "status": 429,
+        "latency_ms": 0.04197300040686969
+      },
+      {
+        "seq": 28,
+        "status": 429,
+        "latency_ms": 0.030220000553526916
+      },
+      {
+        "seq": 29,
+        "status": 429,
+        "latency_ms": 0.032232999728876166
+      },
+      {
+        "seq": 30,
+        "status": 429,
+        "latency_ms": 0.03843600006803172
+      },
+      {
+        "seq": 31,
+        "status": 429,
+        "latency_ms": 0.03767399994103471
+      },
+      {
+        "seq": 32,
+        "status": 429,
+        "latency_ms": 0.03649199970823247
+      },
+      {
+        "seq": 33,
+        "status": 429,
+        "latency_ms": 0.03188299979228759
+      },
+      {
+        "seq": 34,
+        "status": 429,
+        "latency_ms": 0.03816499975073384
+      },
+      {
+        "seq": 35,
+        "status": 429,
+        "latency_ms": 0.04050999996252358
+      }
+    ],
+    "db_responses": [
+      {
+        "seq": 1,
+        "status": 200,
+        "latency_ms": 1.5999529996406636
+      },
+      {
+        "seq": 2,
+        "status": 200,
+        "latency_ms": 1.4206020005076425
+      },
+      {
+        "seq": 3,
+        "status": 200,
+        "latency_ms": 1.3195330002417904
+      },
+      {
+        "seq": 4,
+        "status": 200,
+        "latency_ms": 1.3552029995480552
+      },
+      {
+        "seq": 5,
+        "status": 200,
+        "latency_ms": 1.3228789994172985
+      },
+      {
+        "seq": 6,
+        "status": 200,
+        "latency_ms": 1.2836620007874444
+      },
+      {
+        "seq": 7,
+        "status": 200,
+        "latency_ms": 2.104553999743075
+      },
+      {
+        "seq": 8,
+        "status": 200,
+        "latency_ms": 1.5302860001611407
+      },
+      {
+        "seq": 9,
+        "status": 200,
+        "latency_ms": 1.3065570001344895
+      },
+      {
+        "seq": 10,
+        "status": 200,
+        "latency_ms": 1.2720590002572862
+      },
+      {
+        "seq": 11,
+        "status": 200,
+        "latency_ms": 1.3320969992491882
+      },
+      {
+        "seq": 12,
+        "status": 200,
+        "latency_ms": 1.4282060001278296
+      },
+      {
+        "seq": 13,
+        "status": 200,
+        "latency_ms": 1.3954409996586037
+      },
+      {
+        "seq": 14,
+        "status": 200,
+        "latency_ms": 1.3621759999296046
+      },
+      {
+        "seq": 15,
+        "status": 200,
+        "latency_ms": 1.5129029998206533
+      },
+      {
+        "seq": 16,
+        "status": 200,
+        "latency_ms": 1.819545000216749
+      },
+      {
+        "seq": 17,
+        "status": 200,
+        "latency_ms": 1.402484999744047
+      },
+      {
+        "seq": 18,
+        "status": 200,
+        "latency_ms": 1.3830070001858985
+      },
+      {
+        "seq": 19,
+        "status": 200,
+        "latency_ms": 1.3001450006413506
+      },
+      {
+        "seq": 20,
+        "status": 200,
+        "latency_ms": 1.4524940006594989
+      },
+      {
+        "seq": 21,
+        "status": 429,
+        "latency_ms": 1.3487900005202391
+      },
+      {
+        "seq": 22,
+        "status": 429,
+        "latency_ms": 1.4652690006187186
+      },
+      {
+        "seq": 23,
+        "status": 429,
+        "latency_ms": 1.460589000089385
+      },
+      {
+        "seq": 24,
+        "status": 429,
+        "latency_ms": 1.2749139996230952
+      },
+      {
+        "seq": 25,
+        "status": 429,
+        "latency_ms": 1.3604030000351486
+      },
+      {
+        "seq": 26,
+        "status": 429,
+        "latency_ms": 1.4005419998284196
+      },
+      {
+        "seq": 27,
+        "status": 429,
+        "latency_ms": 1.3168969999242108
+      },
+      {
+        "seq": 28,
+        "status": 429,
+        "latency_ms": 1.3728869998885784
+      },
+      {
+        "seq": 29,
+        "status": 429,
+        "latency_ms": 1.2481630001275335
+      },
+      {
+        "seq": 30,
+        "status": 429,
+        "latency_ms": 1.332377999460732
+      },
+      {
+        "seq": 31,
+        "status": 429,
+        "latency_ms": 1.3901610000175424
+      },
+      {
+        "seq": 32,
+        "status": 429,
+        "latency_ms": 1.3829270001224359
+      },
+      {
+        "seq": 33,
+        "status": 429,
+        "latency_ms": 1.3639400003739865
+      },
+      {
+        "seq": 34,
+        "status": 429,
+        "latency_ms": 1.3416259998848545
+      },
+      {
+        "seq": 35,
+        "status": 429,
+        "latency_ms": 1.411642999300966
+      }
+    ]
+  },
+  "workers": {
+    "worker_tiers": [
+      1,
+      2,
+      4,
+      8,
+      16
+    ],
+    "drain_duration_s": [
+      0.195,
+      0.101,
+      0.057,
+      0.027,
+      0.014
+    ],
+    "claim_throughput_jps": [
+      308.2,
+      595.3,
+      1058.2,
+      2246.4,
+      4356.7
+    ],
+    "duplicate_claim_count": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "duplicate_claim_rate": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  "chat_and_exports": {
+    "markdown_export": {
+      "requests": 25,
+      "duration_s": 0.049,
+      "throughput_rps": 507.2,
+      "avg_latency_ms": 1.97
+    },
+    "pdf_export": {
+      "requests": 15,
+      "duration_s": 1.502,
+      "throughput_rps": 10.0,
+      "avg_latency_ms": 100.12
+    },
+    "chat_concurrency": {
+      "total_attempts": 10,
+      "accepted_202": 1,
+      "conflict_409": 9,
+      "reply_in_progress_protection": "Active (PostgreSQL FOR UPDATE row-level lock verified)"
+    },
+    "exported_chat_files": [
+      "exported_chat_sample.md",
+      "exported_chat_sample.pdf",
+      "exported_chat_transcript.json"
+    ]
+  },
+  "sse_streaming": {
+    "concurrent_streams": 25,
+    "duration_s": 0.084,
+    "total_stream_events": 125,
+    "event_throughput_eps": 1489.3,
+    "pool_held_during_streaming": 0,
+    "streaming_resilience": "Verified High"
+  },
+  "memory": {
+    "requests_executed": 500,
+    "initial_tasks": 1,
+    "final_tasks": 1,
+    "task_growth": 0,
+    "initial_objects": 166303,
+    "final_objects": 167100,
+    "object_growth": 797,
+    "memory_leak_detected": false
+  }
+}

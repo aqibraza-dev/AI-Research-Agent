@@ -1,0 +1,21 @@
+{
+  "ssrf_defense": {
+    "total_attack_vectors_tested": 15,
+    "successfully_intercepted": 15,
+    "block_rate": 1.0,
+    "status": "PASS (100% of internal/metadata targets rejected)",
+    "socket_level_resolver_status": "PASS (PublicResolver blocked loopback and decimal IP)"
+  },
+  "red_team_classifier": {
+    "suites_evaluated": [
+      "jailbreak",
+      "xpia",
+      "crescendo",
+      "authority"
+    ],
+    "total_adversarial_prompts": 9,
+    "defensive_refusal_detection_rate": 1.0,
+    "credential_leak_detection": "PASS",
+    "heuristic_leak_with_refusal_finding": "Classified as 'refusal' (refusal regex evaluated first)"
+  }
+}

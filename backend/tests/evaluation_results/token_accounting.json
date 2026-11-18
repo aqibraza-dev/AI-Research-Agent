@@ -1,0 +1,35 @@
+{
+  "models": {
+    "openrouter/free": {
+      "avg_reservation": 4041.5,
+      "avg_confirmed": 1727.8,
+      "avg_efficiency_ratio": 0.448,
+      "quota_overrun_risk": "0.0% (Guaranteed headroom by byte-based conservative_tokens)",
+      "monetary_cost_usd": 0.0
+    },
+    "qwen/qwen3.8-27b:free": {
+      "avg_reservation": 4041.5,
+      "avg_confirmed": 1680.2,
+      "avg_efficiency_ratio": 0.417,
+      "quota_overrun_risk": "0.0% (Guaranteed headroom by byte-based conservative_tokens)",
+      "monetary_cost_usd": 0.0
+    },
+    "nvidia/nemotron-3.5-lightning:free": {
+      "avg_reservation": 4041.5,
+      "avg_confirmed": 1740.5,
+      "avg_efficiency_ratio": 0.432,
+      "quota_overrun_risk": "0.0% (Guaranteed headroom by byte-based conservative_tokens)",
+      "monetary_cost_usd": 0.0
+    }
+  },
+  "two_phase_settlement_outcomes": {
+    "confirmed": "Actual tokens charged on HTTP 200, unused reserved balance released",
+    "estimated": "Retains conservative reservation when provider call fails uncertainly",
+    "rejected_on_429_finding": "Implementation attempts rejected then BaseException overwrites to estimated"
+  },
+  "daily_limit_defaults": {
+    "default_user_daily_limit": 50000,
+    "search_monthly_limit": 1000,
+    "max_configurable_daily_limit": 10000000
+  }
+}

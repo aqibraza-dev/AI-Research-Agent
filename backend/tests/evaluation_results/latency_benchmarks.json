@@ -1,0 +1,61 @@
+{
+  "standard_research": {
+    "p50": 10.142,
+    "p90": 12.002,
+    "p95": 12.491,
+    "p99": 13.053,
+    "min": 6.845,
+    "max": 13.259,
+    "mean": 10.092,
+    "std": 1.481
+  },
+  "deep_research": {
+    "p50": 18.748,
+    "p90": 21.501,
+    "p95": 22.195,
+    "p99": 23.237,
+    "min": 13.601,
+    "max": 23.883,
+    "mean": 18.647,
+    "std": 2.125
+  },
+  "conversational_chat": {
+    "p50": 2.475,
+    "p90": 3.295,
+    "p95": 3.489,
+    "p99": 3.568,
+    "min": 0.95,
+    "max": 3.609,
+    "mean": 2.317,
+    "std": 0.773
+  },
+  "red_team_suite": {
+    "p50": 6.855,
+    "p90": 9.626,
+    "p95": 10.062,
+    "p99": 10.48,
+    "min": 3.487,
+    "max": 10.682,
+    "mean": 7.016,
+    "std": 2.006
+  },
+  "stage_breakdown_averages_ms": {
+    "tavily_search": 1567.27,
+    "draft_generation": 4579.72,
+    "evidence_review": 3928.46,
+    "citation_validation": 0.01,
+    "db_checkpoint": 16.15
+  },
+  "real_component_latencies_ms": {
+    "citation_validation_ms": 0.009,
+    "pdf_export_ms": 68.74,
+    "token_calculation_ms": 0.0007,
+    "fernet_encrypt_decrypt_ms": 0.044
+  },
+  "sla_thresholds": {
+    "standard_research_p95_sla": 25.0,
+    "deep_research_p95_sla": 45.0,
+    "conversational_chat_p95_sla": 8.0,
+    "red_team_suite_p95_sla": 15.0
+  }
+}

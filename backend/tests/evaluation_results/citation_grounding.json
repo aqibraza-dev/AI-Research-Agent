@@ -1,0 +1,17 @@
+{
+  "summary": {
+    "total_test_cases": 120,
+    "citation_precision": 1.0,
+    "citation_recall": 1.0,
+    "hallucinated_citation_block_rate": 1.0,
+    "invented_url_block_rate": 1.0,
+    "missing_citation_rejection_rate": 1.0,
+    "overall_grounding_accuracy": 1.0
+  },
+  "breakdown": {
+    "clean_valid_reports_passed": "60/60",
+    "missing_citations_caught": "20/20",
+    "hallucinated_ids_intercepted": "20/20",
+    "invented_links_rejected": "20/20"
+  }
+}
